@@ -1,12 +1,76 @@
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Redirecting</title>
     <title>Redirecting</title>
 </head>
+<style>
+    section{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+
+</style>
 <body>
-<p><b>URL</b><br>
-<input type="text" size="100" id='input_url' name='r' value="" required>
-</p>
-<input type=button onClick="parent.location=document.getElementById('input_url').value" value='Redirect'>
+
+<section>
+    <p><b>Простой диплинк</b><br>
+        <input type="text" size="100" id='input_url' name='r' value="" required>
+    </p>
+    <input type=button onClick="parent.location=document.getElementById('input_url').value" value='Перейти'>
+    <br/>
+    <br/>
+
+    <p><b>Оборачиваем и encode url с диплинком beru://browser?hybrid-mode=1&url=</b><br>
+        <input type="text" size="100" id='input_browser_url' name='r' value="" required>
+    </p>
+    <input type=button
+           onClick="parent.location='beru://browser?hybrid-mode=1&url='+encodeURI(document.getElementById('input_browser_url').value)"
+           value='Redirect'>
+    <br/>
+    <br/>
+
+
+    <a href="parent.location='beru://my/cart'">Корзина beru://my/cart</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://product/100427327869'">iPhone beru://product/100427327869</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://my/orders'">Мои заказы beru://my/orders</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://my/profile'">Профиль beru://my/profile</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://search'">Поиск beru://search</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://deals'">Скидки beru://deals</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://bonus'">Мои бонусы beru://bonus</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://wishlist'">Вишлист beru://wishlist</a>
+    <br/>
+    <br/>
+
+    <a href="parent.location='beru://help/feedback'">Форма обратной связи beru://help/feedback</a>
+    <br/>
+    <br/>
+
+</section>
+
 </body>
 </html>
