@@ -17,14 +17,14 @@
 
 <section>
     <b>Простой диплинк</b><br>
-    <input type="text" size="100" id='input_url' name='r' value="" required>
+    <input type="text" size="100" id='input_url' name='r' value="" autocapitalize="off" required>
     <br/>
     <input type=button onClick="parent.location=document.getElementById('input_url').value" value='Перейти'>
     <br/>
     <br/>
 
     <b>Протестировать WebView|WebKit beru://browser?hybrid-mode=1&url=</b><br>
-    <input type="text" size="100" id='input_browser_url' name='r' value="" required>
+    <input type="text" size="100" id='input_browser_url' name='r' value="" autocapitalize="off" required>
     <br/>
     <input type=button
            onClick="parent.location='beru://browser?hybrid-mode=1&url='+encodeURIComponent(document.getElementById('input_browser_url').value)"
@@ -34,7 +34,6 @@
            value='Скопировать получившуюся ссылку'>
     <br/>
     <br/>
-
 
     <a href="beru://my/cart">Корзина beru://my/cart</a>
     <br/>
