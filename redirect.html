@@ -40,11 +40,12 @@ function checkParams(){
     if(p != null && "true" === p_go){
         console.log("hello1")
         var link = "beru://product/" + encodeURIComponent(p)
-        parent.location = link 
+        //parent.location = link
+        document.getElementById("input_produt_button").onclick()
     }
 }
 </script>
-
+<meta name="referrer" content="origin">
 <body style="" onload="checkParams()">
 
 <section>
@@ -78,12 +79,13 @@ function checkParams(){
     <br>
     <br>
 
-    <b>Протестировать beru://product/{id}</b><br>
+    <b>Протестировать beru://product/</b><br>
     <input type="text" size="100" id="input_produt" name="p" value="" autocapitalize="off" required=""/>
     <br>
     <input type="button"
            id="input_produt_button"
            onclick="parent.location=&#39;beru://product/&#39;+encodeURIComponent(document.getElementById(&#39;input_produt&#39;).value)"
+           referrerpolicy="origin"
            value="Перейти на товар"/>
     <br>
     <br>
