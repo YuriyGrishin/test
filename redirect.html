@@ -16,7 +16,36 @@
     </style>
 </head>
 
-<body style="">
+<script language=javascript>
+function checkParams(){
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var r = url.searchParams.get("r")
+    if(r != null){
+        document.getElementById("input_url").value = r;
+    }
+    var w = url.searchParams.get("w")
+    if(w != null){
+        document.getElementById("input_browser_url").value = w;
+    }
+    var p = url.searchParams.get("p")
+    if(p != null){
+        document.getElementById("input_produt").value = p;
+    }
+    var w_go = url.searchParams.get("w_go")
+    if(w !=null && "true" === w_go){
+        parent.location = "beru://browser?hybrid-mode=1&url=" + encodeURIComponent(w)
+    }
+    var p_go = url.searchParams.get("p_go")
+    if(p != null && "true" === p_go){
+        console.log("hello1")
+        var link = "beru://product/" + encodeURIComponent(p)
+        parent.location = link 
+    }
+}
+</script>
+
+<body style="" onload="checkParams()">
 
 <section>
     <b>Простой диплинк</b><br>
@@ -49,7 +78,7 @@
     <br>
     <br>
 
-    <b>Протестировать beru://product/</b><br>
+    <b>Протестировать beru://product/{id}</b><br>
     <input type="text" size="100" id="input_produt" name="p" value="" autocapitalize="off" required=""/>
     <br>
     <input type="button"
@@ -87,33 +116,7 @@
     <a href="beru://help/feedback">Форма обратной связи beru://help/feedback</a>
     <br>
     <br>
-    <script>
-        var url_string = window.location.href;
-        var url = new URL(url_string);
-        var r = url.searchParams.get("r")
-        if(r != null){
-            document.getElementById("input_url").value = r;
-        }
-        var w = url.searchParams.get("w")
-        if(w != null){
-            document.getElementById("input_browser_url").value = w;
-        }
-        var p = url.searchParams.get("p")
-        if(p != null){
-            document.getElementById("input_produt").value = p;
-        }
-        var w_go = url.searchParams.get("w_go")
-        if(w !=null && "true" === w_go){
-            parent.location = "beru://browser?hybrid-mode=1&url=" + encodeURIComponent(w)
-        }
-        var p_go = url.searchParams.get("p_go")
-        if(p != null && "true" === p_go){
-            var link = "beru://product/" + encodeURIComponent(p)
-            if(confirm("Подтвердите переход по ссылке " + link)){
-              parent.location = link
-            }
-        }
-    </script>
+
 </section>
 
 
