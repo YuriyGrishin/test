@@ -108,7 +108,12 @@
         }
         var p_go = url.searchParams.get("p_go")
         if(p != null && "true" === p_go){
-            parent.location = "beru://product/" + encodeURIComponent(p)
+            setTimeout(function() {
+                console.log("hello")
+                //parent.location = "beru://product/" + encodeURIComponent(p)
+                document.getElementById("input_produt_button").click()
+                console.log("world")
+            }, 1000);
         }
     </script>
 </section>
