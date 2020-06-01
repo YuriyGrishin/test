@@ -38,7 +38,7 @@ function checkParams(){
     var w_go = url.searchParams.get("w_go")
     if(w !=null && "true" === w_go){
         if (isAndroid()) {
-            parent.location = "intent://browser?hybrid-mode=1&url=" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;end";
+            parent.location.href = "intent://browser?hybrid-mode=1&url=" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;";
         } else {
             document.getElementById("input_browser_url_button").onclick()
         }
@@ -46,9 +46,9 @@ function checkParams(){
     var p_go = url.searchParams.get("p_go")
     if(p != null && "true" === p_go){
         if (isAndroid()) {
-            parent.location = "intent://product" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;end";
+            parent.location.href = "intent://product" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;";
         } else {
-            document.getElementById("input_produt_button").onclick()
+            document.getElementById("input_product_button").onclick()
         }
     }
 }
@@ -87,11 +87,11 @@ function checkParams(){
     <br>
     <br>
 
-    <b>Протестировать beru://product/{id}</b><br>
+    <b>Протестировать beru://product/</b><br>
     <input type="text" size="100" id="input_produt" name="p" value="" autocapitalize="off" required=""/>
     <br>
     <input type="button"
-           id="input_produt_button"
+           id="input_product_button"
            onclick="parent.location=&#39;beru://product/&#39;+encodeURIComponent(document.getElementById(&#39;input_produt&#39;).value)"
            referrerpolicy="origin"
            value="Перейти на товар"/>
