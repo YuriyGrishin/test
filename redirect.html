@@ -46,7 +46,7 @@ function checkParams(){
     var p_go = url.searchParams.get("p_go")
     if(p != null && "true" === p_go){
         if (isAndroid()) {
-            uri = "intent://product/" + encodeURIComponent(p) + "#Intent;scheme=beru;package=ru.beru.android;";
+            uri = "intent://product/" + encodeURIComponent(p) + "#Intent;scheme=beru;package=ru.beru.android;end";
             var iframe = document.createElement("iframe");
             iframe.onload = function() {
                 iframe.parentNode.removeChild(iframe);
