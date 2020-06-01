@@ -18,7 +18,7 @@
 
 <script language=javascript>
 var isAndroid = function() {
- return navigator.userAgent.match('Android')
+ return true//navigator.userAgent.match('Android')
 }
 function checkParams(){
     var url_string = window.location.href;
@@ -46,7 +46,17 @@ function checkParams(){
     var p_go = url.searchParams.get("p_go")
     if(p != null && "true" === p_go){
         if (isAndroid()) {
-            parent.location.href = "intent://product" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;";
+            uri = "intent://product/" + encodeURIComponent(p) + "#Intent;scheme=beru;package=ru.beru.android;";
+            var iframe = document.createElement("iframe");
+            iframe.onload = function() {
+                iframe.parentNode.removeChild(iframe);
+                window.location.href = uri;
+            };
+
+            iframe.src = uri;
+            iframe.setAttribute("style", "display:none;");
+            document.body.appendChild(iframe);
+
         } else {
             document.getElementById("input_product_button").onclick()
         }
