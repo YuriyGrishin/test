@@ -13,7 +13,6 @@
         margin-right: -50%;
         transform: translate(-50%, -50%)
     }
-
     </style>
 </head>
 
@@ -50,7 +49,7 @@
     <br>
     <br>
 
-    <b>Протестировать beru://product/{id}</b><br>
+    <b>Протестировать beru://product/</b><br>
     <input type="text" size="100" id="input_produt" name="p" value="" autocapitalize="off" required=""/>
     <br>
     <input type="button"
@@ -59,6 +58,7 @@
            value="Перейти на товар"/>
     <br>
     <br>
+
 
     <a href="beru://my/orders">Мои заказы beru://my/orders</a>
     <br>
@@ -103,16 +103,16 @@
             document.getElementById("input_produt").value = p;
         }
         var w_go = url.searchParams.get("w_go")
-        if("true" === w_go){
-            document.getElementById("input_browser_url_button").onclick();
+        if(w !=null && "true" === w_go){
+            parent.location = "beru://browser?hybrid-mode=1&url=" + encodeURIComponent(w)
         }
         var p_go = url.searchParams.get("p_go")
-        if("true" === p_go){
-            document.getElementById("input_produt_button").onclick();
+        if(p != null && "true" === p_go){
+            parent.location = "beru://product/" + encodeURIComponent(p)
         }
-
     </script>
 </section>
+
 
 </body>
 </html>
