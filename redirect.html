@@ -17,6 +17,9 @@
 </head>
 
 <script language=javascript>
+var isAndroid() = function() {
+ return navigator.userAgent.match('Android')
+}
 function checkParams(){
     var url_string = window.location.href;
     var url = new URL(url_string);
@@ -34,14 +37,19 @@ function checkParams(){
     }
     var w_go = url.searchParams.get("w_go")
     if(w !=null && "true" === w_go){
-        parent.location = "beru://browser?hybrid-mode=1&url=" + encodeURIComponent(w)
+        if (isAndroid()) {
+            parent.location = "intent://browser?hybrid-mode=1&url=" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;end";
+        } else {
+            document.getElementById("input_browser_url_button").onclick()
+        }
     }
     var p_go = url.searchParams.get("p_go")
     if(p != null && "true" === p_go){
-        console.log("hello1")
-        var link = "beru://product/" + encodeURIComponent(p)
-        //parent.location = link
-        document.getElementById("input_produt_button").onclick()
+        if (isAndroid()) {
+            parent.location = "intent://product" + encodeURIComponent(w) + "#Intent;scheme=beru;package=ru.beru.android;end";
+        } else {
+            document.getElementById("input_produt_button").onclick()
+        }
     }
 }
 </script>
