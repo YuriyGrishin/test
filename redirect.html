@@ -50,7 +50,7 @@
     <br>
     <br>
 
-    <b>Протестировать beru://product/</b><br>
+    <b>Протестировать beru://product/{id}</b><br>
     <input type="text" size="100" id="input_produt" name="p" value="" autocapitalize="off" required=""/>
     <br>
     <input type="button"
@@ -104,11 +104,11 @@
         }
         var w_go = url.searchParams.get("w_go")
         if("true" === w_go){
-            document.getElementById("input_browser_url_button").click();
+            document.getElementById("input_browser_url_button").onclick();
         }
         var p_go = url.searchParams.get("p_go")
         if("true" === p_go){
-            document.getElementById("input_produt_button").click();
+            document.getElementById("input_produt_button").onclick();
         }
 
     </script>
