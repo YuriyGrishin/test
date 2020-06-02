@@ -38,6 +38,19 @@ function checkParams(){
         document.getElementById("input_produt").value = p;
     }
 
+    var isCmsContentPreview=searchUrlParams("isCmsContentPreview")
+    if(isCmsContentPreview != null){
+        document.getElementById("input_cms_content_preview").value = isCmsContentPreview;
+    }
+    var cmsDsParamValue=searchUrlParams("cmsDsParamValue")
+    if(cmsDsParamValue != null){
+        document.getElementById("input_cms_ds_param").value = cmsDsParamValue;
+    }
+    var rearrFactor=searchUrlParams("rearrFactor")
+    if(rearrFactor != null){
+        document.getElementById("input_rearr_factors").value = rearrFactor;
+    }
+
     var hasRedirect = getRedirectLink() != null
     console.log("hasRedirect="+hasRedirect)
     if (hasRedirect){
@@ -67,6 +80,23 @@ function getRedirectLink(){
     if(p != null && p_go){
         return "beru://product/" + encodeURIComponent(p)
     }
+    var isCmsContentPreview=searchUrlParams("isCmsContentPreview")
+    var cmsDsParamValue=searchUrlParams("cmsDsParamValue")
+    var rearrFactor=searchUrlParams("rearrFactor")
+    var d_go = "true"===searchUrlParams("d_go")
+    if(d_go){
+        var result = "beru://debug?"
+        if(isCmsContentPreview!= null && isCmsContentPreview==="true"||isCmsContentPreview==="false"){
+            result += "&isCmsContentPreview="+isCmsContentPreview
+        }
+        if(cmsDsParamValue!= null){
+            result += "&cmsDsParamValue="+cmsDsParamValue
+        }
+        if(rearrFactor!= null){
+            result += "&rearrFactor="+rearrFactor
+        }
+        return result
+    }
     return null
 }
 
@@ -91,7 +121,7 @@ function goToLink(){
                value="Перейти по ссылке"/>
         <area>
         <input type="button"
-               onclick="document.getElementById(&#39;dialog_with_reference_open_link&#39;).hidden=true"
+               onclick="var e=document.getElementById(&#39;dialog_with_reference_open_link&#39;);e.parentNode.removeChild(e)"
                id="close_dialog"
                value="Закрыть диалог"/>
     </dialog>
@@ -132,12 +162,58 @@ function goToLink(){
     <input type="button"
            id="input_product_button"
            onclick="parent.location=&#39;beru://product/&#39;+encodeURIComponent(document.getElementById(&#39;input_produt&#39;).value)"
-           referrerpolicy="origin"
            value="Перейти на товар"/>
     <br>
     <br>
 
+    <b>Протестировать beru://debug?</b><br>
 
+    <a> Превью: </a><input type="text" size="20" id="input_cms_content_preview" name="p" value="" autocapitalize="off" required=""/>
+    <a> Ds: </a><input type="text" size="20" id="input_cms_ds_param" name="p" value="" autocapitalize="off" required=""/>
+    <a> Rearr: </a><input type="text" size="20" id="input_rearr_factors" name="p" value="" autocapitalize="off" required=""/>
+    <br>
+    <input type="button"
+           id="input_cms_content_preview_button"
+           onclick="parent.location =
+            &#39;beru://debug?&#39; +
+            &#39;isCmsContentPreview=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
+            &#39;&amp;cmsDsParamValue=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_cms_ds_param&#39;).value) +
+            &#39;&amp;rearrFactor=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_rearr_factors&#39;).value)
+           )"
+           value="Перейти по ссылке для настройки приложения"/>
+    <input type="button"
+           id="input_cms_content_preview_copy_deeplink_button"
+           onclick="navigator.clipboard.writeText(
+            &#39;beru://debug?&#39; +
+            &#39;isCmsContentPreview=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
+            &#39;&amp;cmsDsParamValue=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_cms_ds_param&#39;).value) +
+            &#39;&amp;rearrFactor=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_rearr_factors&#39;).value)
+           )"
+           value="Скопировать диплинк"/>
+    <input type="button"
+           id="input_cms_content_preview_copy_link_button"
+           onclick="navigator.clipboard.writeText(
+            &#39;https://&#39; +
+            window.location +
+            &#39;?isCmsContentPreview=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
+            &#39;&amp;cmsDsParamValue=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_cms_ds_param&#39;).value) +
+            &#39;&amp;rearrFactor=&#39; +
+            encodeURIComponent(document.getElementById(&#39;input_rearr_factors&#39;).value)
+           )"
+           value="Скопировать ссылку на эту страницу с настройками"/>
+
+    <br>
+    <br>
+
+<!--    -->
     <a href="beru://my/orders">Мои заказы beru://my/orders</a>
     <br>
     <br>
