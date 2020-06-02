@@ -199,8 +199,7 @@ function goToLink(){
     <input type="button"
            id="input_cms_content_preview_copy_link_button"
            onclick="navigator.clipboard.writeText(
-            &#39;https://&#39; +
-            window.location +
+            window.location,hostname + &#39;/test/redirect.html&#39;+
             &#39;?isCmsContentPreview=&#39; +
             encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
             &#39;&amp;cmsDsParamValue=&#39; +
