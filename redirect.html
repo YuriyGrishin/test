@@ -15,6 +15,7 @@
         width: 100%;
         height: 100%;
     }
+
     </style>
 </head>
 
@@ -107,6 +108,45 @@ function goToLink(){
     }
 }
 
+function elementValueAsParam(paramName, elementId){
+    if (paramName === null || paramName === ""){
+        return ""
+    }
+    var element = document.getElementById(elementId)
+    if (element === null ) {
+        return ""
+    }
+    var elementValue = element.value
+    if (elementValue === null || elementValue === "" ){
+        return ""
+    }
+    return "&" + paramName + "=" + encodeURIComponent(elementValue)
+}
+
+function getAllPageParamsForDeeplink(){
+    return getAllPageParams(true)
+}
+
+function getAllPageParamsForHost(){
+    return getAllPageParams(false)
+}
+
+function getAllPageParams(isDeeplink){
+    var prefix = ""
+    if (isDeeplink){
+        prefix = "beru://deeplink?"
+    } else {
+        prefix = window.location.origin + window.location.pathname + "?"
+    }
+    var result = elementValueAsParam("isCmsContentPreview","input_cms_content_preview") +
+        elementValueAsParam("cmsDsParamValue","input_cms_ds_param&") +
+        elementValueAsParam("rearrFactor","input_rearr_factors");
+    if (result.startsWith("&")) {
+        return prefix + result.substring(1)
+    } else {
+        return prefix + result
+    }
+}
 
 </script>
 <meta name="referrer" content="origin">
@@ -168,51 +208,30 @@ function goToLink(){
 
     <b>Протестировать beru://debug?</b><br>
 
-    <a> Превью: </a><input type="text" size="20" id="input_cms_content_preview" name="p" value="" autocapitalize="off" required=""/>
-    <a> Ds: </a><input type="text" size="20" id="input_cms_ds_param" name="p" value="" autocapitalize="off" required=""/>
-    <a> Rearr: </a><input type="text" size="20" id="input_rearr_factors" name="p" value="" autocapitalize="off" required=""/>
+    <a> Превью: </a><input type="text" size="20" id="input_cms_content_preview" name="p" value="" autocapitalize="off"
+                           required=""/>
+    <a> Ds: </a><input type="text" size="20" id="input_cms_ds_param" name="p" value="" autocapitalize="off"
+                       required=""/>
+    <a> Rearr: </a><input type="text" size="20" id="input_rearr_factors" name="p" value="" autocapitalize="off"
+                          required=""/>
     <br>
     <input type="button"
            id="input_cms_content_preview_button"
-           onclick="parent.location =
-            &#39;beru://debug?&#39; +
-            &#39;isCmsContentPreview=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
-            &#39;&amp;cmsDsParamValue=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_cms_ds_param&#39;).value) +
-            &#39;&amp;rearrFactor=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_rearr_factors&#39;).value)
-           )"
+           onclick="parent.location = getAllPageParamsForDeeplink()"
            value="Перейти по ссылке для настройки приложения"/>
     <input type="button"
            id="input_cms_content_preview_copy_deeplink_button"
-           onclick="navigator.clipboard.writeText(
-            &#39;beru://debug?&#39; +
-            &#39;isCmsContentPreview=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
-            &#39;&amp;cmsDsParamValue=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_cms_ds_param&#39;).value) +
-            &#39;&amp;rearrFactor=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_rearr_factors&#39;).value)
-           )"
+           onclick="navigator.clipboard.writeText(getAllPageParamsForDeeplink())"
            value="Скопировать диплинк"/>
     <input type="button"
            id="input_cms_content_preview_copy_link_button"
-           onclick="navigator.clipboard.writeText(
-            window.location,hostname + &#39;/test/redirect.html&#39;+
-            &#39;?isCmsContentPreview=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_cms_content_preview&#39;).value) +
-            &#39;&amp;cmsDsParamValue=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_cms_ds_param&#39;).value) +
-            &#39;&amp;rearrFactor=&#39; +
-            encodeURIComponent(document.getElementById(&#39;input_rearr_factors&#39;).value)
-           )"
+           onclick="navigator.clipboard.writeText(getAllPageParamsForHost())"
            value="Скопировать ссылку на эту страницу с настройками"/>
 
     <br>
     <br>
 
-<!--    -->
+    <!--    -->
     <a href="beru://my/orders">Мои заказы beru://my/orders</a>
     <br>
     <br>
