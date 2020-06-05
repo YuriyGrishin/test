@@ -137,7 +137,7 @@ function getAllPageParamsForHost(){
 function getAllPageParams(isDeeplink){
     var prefix = ""
     if (isDeeplink){
-        prefix = "beru://deeplink?"
+        prefix = "beru://debug?"
     } else {
         prefix = window.location.origin + window.location.pathname + "?"
     }
