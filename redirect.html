@@ -1,10 +1,10 @@
+<!-- saved from url=(0049)https://yuriygrishin.github.io/test/redirect.html -->
 <html>
 <head>
     <link rel="icon"
             type="image/ico"
             href="/test/favicon.ico">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name=viewport content="width=device-width, initial-scale=1.0, minimum-scale=0.5 maximum-scale=1.0">
     <title>Redirecting</title>
     <style>
         section {
@@ -22,11 +22,120 @@
 
     </style>
 </head>
+
+<script src="/test/scripts.js"></script>
+
+<meta name="referrer" content="origin">
 <body style="" onload="checkParams()">
+
+<section>
+
+    <dialog open id="dialog_with_reference_open_link" hidden>
+        <input type="button"
+                onclick="goToLink()"
+                id="go_to_link"
+                value="Перейти по ссылке" />
+        <area>
+        <input type="button"
+                onclick="var e=document.getElementById(&#39;dialog_with_reference_open_link&#39;);e.parentNode.removeChild(e)"
+                id="close_dialog"
+                value="Закрыть диалог" />
+    </dialog>
+
+    <b>Простой диплинк</b><br>
+    <input type="text" size="100" id="input_url" name="r" value="" autocapitalize="off" required="" />
+    <br>
+    <input type="button" onclick="parent.location=document.getElementById(&#39;input_url&#39;).value" value="Перейти" />
+    <br>
+    <br>
+
+    <b>Протестировать WebView|WebKit beru://browser?hybrid-mode=1&amp;url=</b><br>
+    <input type="text" size="100" id="input_browser_url" name="w" value="" autocapitalize="off" autofocus=""
+            required="" />
+    <br>
+    <input type="button"
+            onclick="parent.location=&#39;beru://browser?hybrid-mode=1&amp;url=&#39;+encodeURIComponent(document.getElementById(&#39;input_browser_url&#39;).value)"
+            id="input_browser_url_button"
+            name="w_go"
+            value="Перейти" />
+    <input type="button"
+            onclick="navigator.clipboard.writeText(&#39;beru://browser?hybrid-mode=1&amp;url=&#39;+encodeURIComponent(document.getElementById(&#39;input_browser_url&#39;).value))"
+            value="Скопировать получившуюся ссылку" />
+    <br>
+    <br>
+
+    <a href="beru://my/cart">Корзина beru://my/cart</a>
+    <br>
+    <br>
+
+    <a href="beru://product/100427327869">iPhone beru://product/100427327869</a>
+    <br>
+    <br>
+
+    <b>Протестировать beru://product/</b><br>
+    <input type="text" size="100" id="input_produt" name="p" value="" autocapitalize="off" required="" />
+    <br>
+    <input type="button"
+            id="input_product_button"
+            onclick="parent.location=&#39;beru://product/&#39;+encodeURIComponent(document.getElementById(&#39;input_produt&#39;).value)"
+            value="Перейти на товар" />
+    <br>
+    <br>
+
+    <b>Протестировать beru://debug?</b><br>
+
+    <a> Превью: </a><input type="text" size="20" id="input_cms_content_preview" name="p" value="" autocapitalize="off"
+        required="" />
+    <a> Ds: </a><input type="text" size="20" id="input_cms_ds_param" name="p" value="" autocapitalize="off"
+        required="" />
+    <a> Rearr: </a><input type="text" size="20" id="input_rearr_factors" name="p" value="" autocapitalize="off"
+        required="" />
+    <br>
+    <input type="button"
+            id="input_cms_content_preview_button"
+            onclick="parent.location = getAllPageParamsForDeeplink()"
+            value="Перейти по ссылке для настройки приложения" />
+    <input type="button"
+            id="input_cms_content_preview_copy_deeplink_button"
+            onclick="navigator.clipboard.writeText(getAllPageParamsForDeeplink())"
+            value="Скопировать диплинк" />
+    <input type="button"
+            id="input_cms_content_preview_copy_link_button"
+            onclick="navigator.clipboard.writeText(getAllPageParamsForHost())"
+            value="Скопировать ссылку на эту страницу с настройками" />
+
+    <br>
+    <br>
+
+    <!--    -->
+    <a href="beru://my/orders">Мои заказы beru://my/orders</a>
+    <br>
+    <br>
+
+    <a href="beru://my/profile">Профиль beru://my/profile</a>
+    <br>
+    <br>
+
+    <a href="beru://search">Поиск beru://search</a>
+    <br>
+    <br>
+
+    <a href="beru://deals">Скидки beru://deals</a>
+    <br>
+    <br>
+
+    <a href="beru://bonus">Мои бонусы beru://bonus</a>
+    <br>
+    <br>
+
+    <a href="beru://wishlist">Вишлист beru://wishlist</a>
+    <br>
+    <br>
+
+    <a href="beru://help/feedback">Форма обратной связи beru://help/feedback</a>
+    <br>
+    <br>
+
+</section>
 </body>
-
-<a href="yamarket://browser?hybrid-mode=1&url=https%3A%2F%2Fm.market.yandex.ru%2Fbusiness--ushop%2F724998">Переход на выдачу по СамсонФарма</a>
-<br>
-<br>
-
 </html>
