@@ -129,7 +129,7 @@ function getAllPageParams(isDeeplink) {
 
 function convertLink(link){
     if (!link || link.isEmpty) return "https://market.yandex.ru"
-    var prepareLink = link;
+    var prepareLink = link.trim();
     if (prepareLink.startsWith("http://")) {
        prepareLink = prepareLink.replace("http://", "https://");
     }
