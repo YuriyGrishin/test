@@ -1,0 +1,43 @@
+<!-- saved from url=(0049)https://yuriygrishin.github.io/test/redirect.html -->
+<html>
+<head>
+    <link rel="icon"
+          type="image/ico"
+          href="/test/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Redirecting</title>
+    <style>
+        section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+
+    </style>
+</head>
+
+<script src="/test/scripts.js"></script>
+
+<meta name="referrer" content="origin">
+<body style="" onload="checkParams()">
+
+<section>
+
+
+    <b>Ссылка маркета для конвертирования</b><br>
+    <input type="text" size="100" id="input_url" name="r" value="" autocapitalize="off" required=""/>
+    <br>
+    <input
+            type="button"
+            onclick="navigator.clipboard.writeText(&#39;convertLink(encodeURIComponent(document.getElementById(&#39;input_browser_url&#39;).value)))"
+            value="Скопировтаь сконвертированную ссылку"
+    />
+    <br>
+    <br>
+
+</section>
+</body>
+</html>
