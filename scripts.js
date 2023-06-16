@@ -138,10 +138,11 @@ function convertLink(link){
     }
     var linkUrl = new URL(prepareLink);
     if (linkUrl.hostname !== "market.yandex.ru") {
+       console.log("host must be market.yandex.ru");
        return prepareLink;
     }
-    if(linkUrl.pathname.match("\/category.*\/.*\/list")) {
-       var category = linkUrl.pathname.match("^(\/category[\-|a-z|A-Z|0-9]*\/)(\[0-9]*)(\/list)")[2];
+    if(linkUrl.pathname.match("\/catalog.*\/.*\/list")) {
+       var category = linkUrl.pathname.match("^(\/catalog[\-|a-z|A-Z|0-9]*\/)(\[0-9]*)(\/list)")[2];
        var params = "";
        if (linkUrl.searchParams.has("hid")) {
           params += "hid="+linkUrl.searchParams.get("hid");
@@ -155,7 +156,9 @@ function convertLink(link){
        if (params.length>0){
           params += "&skipOldSearch=true";
        }
-       return "yamarket://category/" + category + "/list" + params;
+       return "yamarket://catalog/" + category + "/list" + params;
+    } else {
+       console.log("linkUrl not match with catalog list");
     }
-    return "https://market.yandex.ru?"
+    return prepareLink;
 }
