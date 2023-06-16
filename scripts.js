@@ -126,3 +126,36 @@ function getAllPageParams(isDeeplink) {
         return prefix + result;
     }
 }
+
+function convertLink(link){
+    if (!link || link.isEmpty) return "https://market.yandex.ru"
+    var prepareLink = link;
+    if (prepareLink.startsWith("http://")) {
+       prepareLink = prepareLink.replace("http://", "https://");
+    }
+    if (!prepareLink.startsWith("https://")){
+       prepareLink = "https://" + link;
+    }
+    var linkUrl = new URL(prepareLink);
+    if (linkUrl.hostname !== "market.yandex.ru") {
+       return prepareLink;
+    }
+    if(linkUrl.pathname.match("\/category.*\/.*\/list")) {
+       var category = linkUrl.pathname.match("^(\/category[\-|a-z|A-Z|0-9]*\/)(\[0-9]*)(\/list)")[2];
+       var params = "";
+       if (linkUrl.searchParams.has("hid")) {
+          params += "hid="+linkUrl.searchParams.get("hid");
+       }
+       if (linkUrl.searchParams.has("nid")) {
+          params += "nid="+linkUrl.searchParams.get("nid");
+       }
+       if (linkUrl.searchParams.has("text")) {
+          params += "text="+encodeURIComponent(linkUrl.searchParams.get("text"));
+       }
+       if (params.length>0){
+          params += "&skipOldSearch=true";
+       }
+       return "yamarket://category/" + category + "/list" + params;
+    }
+    return "https://market.yandex.ru?"
+}
