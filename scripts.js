@@ -8,7 +8,7 @@ function checkParams() {
     var r = searchUrlParams('r');
     if (r != null) {
         document.getElementById('input_url').value = r;
-        var r_go = earchUrlParams('r_go');
+        var r_go = searchUrlParams('r_go');
         if (r_go == 'true') {
             parent.location = r;
         }
